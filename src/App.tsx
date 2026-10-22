@@ -142,6 +142,7 @@ export default function App() {
             onNavigateToServices={(category) => {
               setActiveTab('services');
             }}
+            lang={lang}
           />
         )}
 
@@ -150,6 +151,7 @@ export default function App() {
             services={services}
             onSelectService={(s) => setSelectedServiceForDetail(s)}
             onRequestQuote={(s) => setSelectedServiceForQuote(s)}
+            lang={lang}
           />
         )}
 
@@ -161,7 +163,7 @@ export default function App() {
         )}
 
         {activeTab === 'assistant' && (
-          <AiAssistantTab />
+          <AiAssistantTab lang={lang} />
         )}
 
         {activeTab === 'contact' && (
@@ -177,11 +179,13 @@ export default function App() {
         service={selectedServiceForDetail}
         onClose={() => setSelectedServiceForDetail(null)}
         onRequestQuote={(s) => setSelectedServiceForQuote(s)}
+        lang={lang}
       />
 
       <QuoteModal
         service={selectedServiceForQuote}
         onClose={() => setSelectedServiceForQuote(null)}
+        lang={lang}
       />
 
       <AddServiceModal
@@ -189,6 +193,7 @@ export default function App() {
         onClose={() => setIsAddModalOpen(false)}
         onAddService={handleAddService}
         nextOrder={services.length + 1}
+        lang={lang}
       />
 
       <AdminLoginModal
@@ -197,6 +202,7 @@ export default function App() {
         onLoginSuccess={() => {
           setIsAddModalOpen(true);
         }}
+        lang={lang}
       />
 
       {/* Footer */}
