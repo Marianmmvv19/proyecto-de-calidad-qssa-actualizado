@@ -141,7 +141,7 @@ export const WelcomeTab: React.FC<WelcomeTabProps> = ({
             <img 
               src={qssaLogo} 
               alt="Logo Oficial QSSA" 
-              className="w-64 h-auto sm:w-80 lg:w-full lg:max-w-[25rem] object-contain drop-shadow-xl"
+              className="w-56 h-auto sm:w-72 lg:w-full lg:max-w-[20rem] object-contain drop-shadow-xl"
             />
           </div>
 
