@@ -68,7 +68,7 @@ export const ContactTab: React.FC<ContactTabProps> = ({ lang = 'ES' }) => {
           waLink: 'https://wa.me/56979713820'
         }
       ],
-      email: 'oruro@qssa-bolivia.com',
+      email: 'contacto@qssacertificaciones.com',
       hours: lang === 'ES' ? 'Lun - Vie: 08:30 - 18:30' : 'Mon - Fri: 08:30 - 18:30'
     }
   ];
