@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { TabType } from '../types';
 import heroBgImage from '../assets/images/qssa_hero_bg_1784953559107.jpg';
-import qssaLogo from '../assets/images/qssa_home_logo.jpeg';
+import qssaLogo from '../assets/images/qssa_home_logo.png';
 import imgTraining from '../assets/images/qssa_training_iso.jpg';
 import imgAudit from '../assets/images/qssa_audit_compliance.jpg';
 import imgRefinery from '../assets/images/qssa_refinery_left.png';
@@ -141,7 +141,7 @@ export const WelcomeTab: React.FC<WelcomeTabProps> = ({
             <img 
               src={qssaLogo} 
               alt="Logo Oficial QSSA" 
-              className="w-56 h-auto sm:w-72 object-contain drop-shadow-xl"
+              className="w-64 h-auto sm:w-80 lg:w-full lg:max-w-[25rem] object-contain drop-shadow-xl"
             />
           </div>
 
