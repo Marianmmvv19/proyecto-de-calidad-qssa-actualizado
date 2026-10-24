@@ -27,6 +27,53 @@
   }
 }
 
+@keyframes welcomeEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes welcomeLogoEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.welcome-hero-enter {
+  animation: welcomeEnter 700ms ease-out both;
+}
+
+.welcome-copy-enter {
+  animation: welcomeEnter 700ms 120ms ease-out both;
+}
+
+.welcome-logo-enter {
+  animation: welcomeLogoEnter 800ms 220ms ease-out both;
+}
+
+.welcome-badges-enter {
+  animation: welcomeEnter 650ms 350ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-hero-enter,
+  .welcome-copy-enter,
+  .welcome-logo-enter,
+  .welcome-badges-enter {
+    animation: none;
+  }
+}
+
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }

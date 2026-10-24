@@ -81,7 +81,7 @@ export const WelcomeTab: React.FC<WelcomeTabProps> = ({
     <div className="space-y-12 pb-16 font-sans">
       
       {/* HERO SECTION (Original Color Theme with Blended Left Refinery Image) */}
-      <div className="relative rounded-3xl overflow-hidden shadow-sm border border-slate-200/90 bg-white min-h-[500px] flex flex-col justify-between p-6 sm:p-10 lg:p-12 text-slate-900">
+      <div className="relative rounded-3xl overflow-hidden shadow-sm border border-slate-200/90 bg-white min-h-[500px] flex flex-col justify-between p-6 sm:p-10 lg:p-12 text-slate-900 welcome-hero-enter">
         
         {/* Left Ambient Industrial Refinery Image (High Visibility & Elegantly Blended) */}
         <div className="absolute top-0 left-0 bottom-0 w-full sm:w-7/12 pointer-events-none overflow-hidden rounded-l-3xl">
@@ -102,7 +102,7 @@ export const WelcomeTab: React.FC<WelcomeTabProps> = ({
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-4">
           
           {/* Left Text Block */}
-          <div className="lg:col-span-7 space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="lg:col-span-7 space-y-6 welcome-copy-enter">
             
             {/* Tagline */}
             <div className="text-emerald-700 text-xs font-black tracking-widest uppercase flex items-center space-x-2">
@@ -137,7 +137,7 @@ export const WelcomeTab: React.FC<WelcomeTabProps> = ({
           </div>
 
           {/* Right Logo Display */}
-          <div className="lg:col-span-5 flex justify-center items-center p-4">
+          <div className="lg:col-span-5 flex justify-center items-center p-4 welcome-logo-enter">
             <img 
               src={qssaLogo} 
               alt="Logo Oficial QSSA" 
@@ -148,7 +148,7 @@ export const WelcomeTab: React.FC<WelcomeTabProps> = ({
         </div>
 
         {/* Hero Bottom Badges */}
-        <div className="relative z-10 pt-6 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="relative z-10 pt-6 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4 welcome-badges-enter">
           
           <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/80 flex items-center space-x-3.5 hover:border-emerald-500/50 transition shadow-sm">
             <div className="p-2.5 bg-emerald-100 text-emerald-800 rounded-xl">
