@@ -1,9 +1,11 @@
+import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 import { INITIAL_SERVICES } from './src/data/servicesData.js';
 import { processAssistantQuery } from './src/data/assistantEngine.js';
+import { isAdminPasswordConfigured, verifyAdminCredentials } from './server/adminAuth.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,6 +15,18 @@ async function startServer() {
   const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
   app.use(express.json());
+
+  app.post('/api/admin-login', (req, res) => {
+    if (!isAdminPasswordConfigured()) {
+      return res.status(503).json({ error: 'El acceso de administrador no está configurado en el servidor.' });
+    }
+
+    if (verifyAdminCredentials(req.body?.username, req.body?.password)) {
+      return res.json({ success: true });
+    }
+
+    return res.status(401).json({ error: 'Usuario o contraseña incorrectos. Verifique sus credenciales de administrador.' });
+  });
 
   // API Route: Get initial services matrix
   app.get('/api/services', (_req, res) => {

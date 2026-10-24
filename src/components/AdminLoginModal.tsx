@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Lock, KeyRound, AlertCircle, ArrowRight, UserCheck } from 'lucide-react';
+import { X, KeyRound, AlertCircle, ArrowRight, UserCheck } from 'lucide-react';
 import qssaLogo from '../assets/qssa_official_logo-4aPsr4dZ.png';
 
 interface AdminLoginModalProps {
@@ -20,31 +20,33 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      if (username.trim() === 'admin' && password === 'admin1234') {
+    try {
+      const response = await fetch('/api/admin-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: username.trim(), password })
+      });
+      const result: { success?: boolean; error?: string } = await response.json();
+
+      if (response.ok && result.success) {
         setError('');
-        setIsSubmitting(false);
         onLoginSuccess();
         onClose();
-        // Reset form
         setUsername('');
         setPassword('');
       } else {
-        setIsSubmitting(false);
-        setError('Usuario o contraseña incorrectos. Verifique sus credenciales de administrador.');
+        setError(result.error || 'Usuario o contraseña incorrectos. Verifique sus credenciales de administrador.');
       }
-    }, 400);
-  };
-
-  const handleFillDemoCredentials = () => {
-    setUsername('admin');
-    setPassword('admin1234');
-    setError('');
+    } catch {
+      setError('No se pudo verificar el acceso. Inténtelo de nuevo más tarde.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -98,7 +100,7 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Ej. admin"
+                placeholder="Ingrese su usuario"
                 className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition font-medium"
               />
             </div>
@@ -121,23 +123,6 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
                 className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition font-medium"
               />
             </div>
-          </div>
-
-          {/* Quick Credential Helper Pill */}
-          <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-2xl p-3 flex items-center justify-between text-xs text-emerald-900">
-            <div className="flex items-center space-x-2">
-              <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              <div>
-                <span className="font-bold">Credenciales demo:</span> <code className="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-mono font-bold">admin</code> / <code className="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-mono font-bold">admin1234</code>
-              </div>
-            </div>
-            <button
-              type="button"
-              onClick={handleFillDemoCredentials}
-              className="ml-2 text-[11px] font-extrabold text-emerald-700 hover:text-emerald-900 underline underline-offset-2 shrink-0"
-            >
-              Auto-completar
-            </button>
           </div>
 
           {/* Submit Action */}

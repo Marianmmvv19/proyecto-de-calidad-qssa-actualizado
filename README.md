@@ -31,6 +31,10 @@ Incluye la matriz completa de 29 servicios de normalización, auditorías y cert
    http://localhost:3000
    ```
 
+## Acceso de Administrador
+
+Configure `ADMIN_USERNAME` y `ADMIN_PASSWORD` como variables de entorno del servidor. Para desarrollo local, cópielas a un archivo `.env` (ignorado por Git); nunca publique la contraseña en el repositorio ni en el código del navegador. En Vercel, configure ambas variables en **Settings > Environment Variables** y vuelva a desplegar.
+
 ## Compilación para Producción
 
 ```bash
