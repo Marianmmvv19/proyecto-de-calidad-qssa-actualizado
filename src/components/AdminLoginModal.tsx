@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, KeyRound, AlertCircle, ArrowRight, UserCheck } from 'lucide-react';
+import { X, KeyRound, AlertCircle, ArrowRight, UserCheck, Eye, EyeOff } from 'lucide-react';
 import qssaLogo from '../assets/qssa_official_logo-4aPsr4dZ.png';
 
 interface AdminLoginModalProps {
@@ -15,6 +15,7 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
 }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -39,6 +40,7 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
         onClose();
         setUsername('');
         setPassword('');
+        setShowPassword(false);
       } else {
         setError(result.error || 'Usuario o contraseña incorrectos. Verifique sus credenciales de administrador.');
       }
@@ -115,13 +117,26 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
                 <KeyRound className="w-4 h-4" />
               </div>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition font-medium"
+                className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl pl-10 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition font-medium"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none transition cursor-pointer"
+                title={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
+                aria-label={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
+              </button>
             </div>
           </div>
 

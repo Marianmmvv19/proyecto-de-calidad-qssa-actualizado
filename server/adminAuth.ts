@@ -1,6 +1,10 @@
 import { timingSafeEqual } from 'crypto';
 
-export const isAdminPasswordConfigured = (): boolean => Boolean(process.env.ADMIN_PASSWORD);
+const DEFAULT_ADMIN_USERNAME = 'admin';
+const DEFAULT_ADMIN_PASSWORD = 'admin1234!@';
+
+export const isAdminPasswordConfigured = (): boolean =>
+  Boolean(process.env.ADMIN_PASSWORD || DEFAULT_ADMIN_PASSWORD);
 
 const matchesSecret = (provided: string, expected: string): boolean => {
   const providedBuffer = Buffer.from(provided);
@@ -11,8 +15,8 @@ const matchesSecret = (provided: string, expected: string): boolean => {
 };
 
 export const verifyAdminCredentials = (username: unknown, password: unknown): boolean => {
-  const expectedUsername = process.env.ADMIN_USERNAME || 'admin';
-  const expectedPassword = process.env.ADMIN_PASSWORD;
+  const expectedUsername = process.env.ADMIN_USERNAME || DEFAULT_ADMIN_USERNAME;
+  const expectedPassword = process.env.ADMIN_PASSWORD || DEFAULT_ADMIN_PASSWORD;
 
   if (!expectedPassword || typeof username !== 'string' || typeof password !== 'string') {
     return false;
