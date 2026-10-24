@@ -136,12 +136,12 @@ export const WelcomeTab: React.FC<WelcomeTabProps> = ({
 
           </div>
 
-          {/* Right Logo Display with Floating Motion */}
+          {/* Right Logo Display */}
           <div className="lg:col-span-5 flex justify-center items-center p-4">
             <img 
               src={qssaLogo} 
               alt="Logo Oficial QSSA" 
-              className="w-56 h-56 sm:w-72 sm:h-72 object-contain drop-shadow-xl animate-float-slow transition-transform duration-500 hover:scale-105" 
+              className="w-56 h-56 sm:w-72 sm:h-72 object-contain drop-shadow-xl"
             />
           </div>
 
