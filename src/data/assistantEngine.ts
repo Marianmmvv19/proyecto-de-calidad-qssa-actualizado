@@ -138,10 +138,8 @@ Estoy a su disposición para orientarle técnicamente sobre nuestro catálogo of
 ✉️ **Acceso al Correo Institucional QSSA:**
 • Inicia sesión en Hostinger Mail: [https://mail.hostinger.com/auth/login](https://mail.hostinger.com/auth/login)
 
-🌐 **Otras Oficinas en Bolivia:**
-• **La Paz:** Av. Arce N° 2631, Edificio Multicentro, Piso 12 (WhatsApp: +591 71100224)
-• **Santa Cruz:** Equipetrol Norte, Calle 7 Oeste N° 14 (WhatsApp: +591 71100225)
-• **Cochabamba:** Av. Pando N° 1122, Zona Recoleta (WhatsApp: +591 71100226)`;
+🌐 **Atención y Cobertura:**
+• Brindamos servicios técnicos y asesoría especializada en todo el territorio de Bolivia y a nivel internacional (modalidad in situ presencial y remota).`;
   }
 
   // 7. Búsqueda por Norma ISO Específica

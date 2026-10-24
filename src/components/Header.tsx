@@ -489,7 +489,7 @@ export const Header: React.FC<HeaderProps> = ({
                   >
                     <span className="flex items-center space-x-2">
                       <PhoneCall className="w-4 h-4 text-emerald-600" />
-                      <span>{lang === 'ES' ? 'Formulario de Contacto y Sedes' : 'Contact Form & Offices'}</span>
+                      <span>{lang === 'ES' ? 'Formulario de Contacto y Sede' : 'Contact Form & Headquarters'}</span>
                     </span>
                     <ArrowRight className="w-4 h-4 text-emerald-700" />
                   </button>
@@ -500,14 +500,14 @@ export const Header: React.FC<HeaderProps> = ({
                       className="text-left p-2 rounded-xl hover:bg-slate-50 text-slate-800 flex items-center space-x-2"
                     >
                       <span className="text-emerald-600 font-bold">&rarr;</span>
-                      <span>{lang === 'ES' ? 'Sede Central La Paz (Bolivia)' : 'La Paz Main Office'}</span>
+                      <span>{lang === 'ES' ? 'Sede Central Oruro (Bolivia)' : 'Oruro Headquarters (Bolivia)'}</span>
                     </button>
                     <button
                       onClick={() => handleSubOptionClick('contact')}
                       className="text-left p-2 rounded-xl hover:bg-slate-50 text-slate-800 flex items-center space-x-2"
                     >
                       <span className="text-emerald-600 font-bold">&rarr;</span>
-                      <span>{lang === 'ES' ? 'Oficinas Santa Cruz y Cochabamba' : 'Santa Cruz & Cochabamba Offices'}</span>
+                      <span>{lang === 'ES' ? 'Atención Nacional e Internacional' : 'Nationwide & International Support'}</span>
                     </button>
                     <button
                       onClick={() => handleSubOptionClick('contact')}
@@ -873,7 +873,7 @@ export const Header: React.FC<HeaderProps> = ({
                       onClick={() => handleSubOptionClick('contact')}
                       className="w-full text-left px-3 py-1.5 rounded-xl hover:bg-emerald-50 text-slate-800 hover:text-emerald-700 font-bold flex items-center justify-between transition-colors"
                     >
-                      <span>{lang === 'ES' ? 'Sede Central La Paz (Bolivia)' : 'La Paz Main Office'}</span>
+                      <span>{lang === 'ES' ? 'Sede Central Oruro (Bolivia)' : 'Oruro Headquarters (Bolivia)'}</span>
                       <ArrowRight className="w-3.5 h-3.5 text-emerald-600" />
                     </button>
 
@@ -881,14 +881,7 @@ export const Header: React.FC<HeaderProps> = ({
                       onClick={() => handleSubOptionClick('contact')}
                       className="w-full text-left px-3 py-1.5 rounded-xl hover:bg-slate-50 text-slate-600 hover:text-emerald-700 font-medium transition-colors"
                     >
-                      &bull; {lang === 'ES' ? 'Oficina Santa Cruz de la Sierra' : 'Santa Cruz Office'}
-                    </button>
-
-                    <button
-                      onClick={() => handleSubOptionClick('contact')}
-                      className="w-full text-left px-3 py-1.5 rounded-xl hover:bg-slate-50 text-slate-600 hover:text-emerald-700 font-medium transition-colors"
-                    >
-                      &bull; {lang === 'ES' ? 'Oficina Cochabamba' : 'Cochabamba Office'}
+                      &bull; {lang === 'ES' ? 'Atención Nacional e Internacional' : 'Nationwide & International Support'}
                     </button>
 
                     <button

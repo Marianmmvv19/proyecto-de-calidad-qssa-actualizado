@@ -6,7 +6,9 @@ import {
   MessageSquare, 
   Headphones, 
   CheckCircle2,
-  ExternalLink
+  ExternalLink,
+  Clock,
+  Globe
 } from 'lucide-react';
 import { TabType } from '../types';
 import { UI_DICTIONARY } from '../data/translations';
@@ -33,7 +35,6 @@ interface OfficeData {
 
 export const ContactTab: React.FC<ContactTabProps> = ({ lang = 'ES' }) => {
   const t = UI_DICTIONARY[lang];
-  const [selectedCity, setSelectedCity] = useState<string>('all');
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   
   // Form State with separate country code and phone
@@ -43,14 +44,14 @@ export const ContactTab: React.FC<ContactTabProps> = ({ lang = 'ES' }) => {
     countryCode: '591',
     phone: '',
     company: '',
-    city: 'Oruro',
+    city: '',
     message: ''
   });
 
   const offices: OfficeData[] = [
     {
       id: 'oruro',
-      name: lang === 'ES' ? 'Sede Central Oruro' : 'Oruro Main Office',
+      name: lang === 'ES' ? 'Sede Central Oruro' : 'Oruro Headquarters',
       address: 'Urbanización Millenium , zona las retamas , calle s/n, Oruro - Bolivia',
       phone: '+591 77225772',
       whatsappContacts: [
@@ -69,68 +70,8 @@ export const ContactTab: React.FC<ContactTabProps> = ({ lang = 'ES' }) => {
       ],
       email: 'oruro@qssa-bolivia.com',
       hours: lang === 'ES' ? 'Lun - Vie: 08:30 - 18:30' : 'Mon - Fri: 08:30 - 18:30'
-    },
-    {
-      id: 'lapaz',
-      name: lang === 'ES' ? 'Oficina La Paz' : 'La Paz Branch',
-      address: 'Av. Arce N° 2631, Edificio Multicentro, Piso 12, La Paz - Bolivia',
-      phone: '+591 2 2431000',
-      whatsappContacts: [
-        {
-          label: lang === 'ES' ? 'WhatsApp La Paz' : 'WhatsApp La Paz',
-          number: '+591 71100224',
-          cleanNumber: '59171100224',
-          waLink: 'https://wa.me/59171100224'
-        }
-      ],
-      email: 'lapaz@qssa-bolivia.com',
-      hours: lang === 'ES' ? 'Lun - Vie: 08:30 - 18:30' : 'Mon - Fri: 08:30 - 18:30'
-    },
-    {
-      id: 'santacruz',
-      name: lang === 'ES' ? 'Oficina Santa Cruz' : 'Santa Cruz Branch',
-      address: 'Equipetrol Norte, Calle 7 Oeste N° 14, Santa Cruz de la Sierra - Bolivia',
-      phone: '+591 3 3422000',
-      whatsappContacts: [
-        {
-          label: lang === 'ES' ? 'WhatsApp Santa Cruz' : 'WhatsApp Santa Cruz',
-          number: '+591 71100225',
-          cleanNumber: '59171100225',
-          waLink: 'https://wa.me/59171100225'
-        }
-      ],
-      email: 'santacruz@qssa-bolivia.com',
-      hours: lang === 'ES' ? 'Lun - Vie: 08:00 - 17:30' : 'Mon - Fri: 08:00 - 17:30'
-    },
-    {
-      id: 'cochabamba',
-      name: lang === 'ES' ? 'Oficina Cochabamba' : 'Cochabamba Branch',
-      address: 'Av. Pando N° 1122, Zona Recoleta, Cochabamba - Bolivia',
-      phone: '+591 4 4581000',
-      whatsappContacts: [
-        {
-          label: lang === 'ES' ? 'WhatsApp Cochabamba' : 'WhatsApp Cochabamba',
-          number: '+591 71100226',
-          cleanNumber: '59171100226',
-          waLink: 'https://wa.me/59171100226'
-        }
-      ],
-      email: 'cochabamba@qssa-bolivia.com',
-      hours: lang === 'ES' ? 'Lun - Vie: 08:30 - 18:00' : 'Mon - Fri: 08:30 - 18:00'
     }
   ];
-
-  const cityLabels: Record<string, string> = {
-    all: lang === 'ES' ? 'TODAS' : 'ALL',
-    oruro: 'ORURO',
-    lapaz: 'LA PAZ',
-    santacruz: 'SANTA CRUZ',
-    cochabamba: 'COCHABAMBA'
-  };
-
-  const filteredOffices = selectedCity === 'all' 
-    ? offices 
-    : offices.filter(o => o.id === selectedCity);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -280,16 +221,13 @@ export const ContactTab: React.FC<ContactTabProps> = ({ lang = 'ES' }) => {
                   <label className="block font-black text-slate-950 text-sm sm:text-base mb-1.5">
                     {t.formCity}
                   </label>
-                  <select
+                  <input
+                    type="text"
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    className="w-full min-w-0 bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-950 font-black text-base focus:outline-none focus:border-emerald-600 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 transition-all duration-150"
-                  >
-                    <option value="Oruro">{lang === 'ES' ? 'Sede Central Oruro' : 'Oruro Main Office'}</option>
-                    <option value="La Paz">{lang === 'ES' ? 'Oficina La Paz' : 'La Paz Branch'}</option>
-                    <option value="Santa Cruz">{lang === 'ES' ? 'Oficina Santa Cruz' : 'Santa Cruz Branch'}</option>
-                    <option value="Cochabamba">{lang === 'ES' ? 'Oficina Cochabamba' : 'Cochabamba Branch'}</option>
-                  </select>
+                    placeholder={lang === 'ES' ? "Ej. Oruro, La Paz, Santa Cruz..." : "e.g. Oruro, La Paz, Santa Cruz..."}
+                    className="w-full min-w-0 bg-slate-50 border-2 border-slate-300 rounded-xl px-4 py-3 text-slate-950 font-extrabold text-base focus:outline-none focus:border-emerald-600 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 transition-all duration-150"
+                  />
                 </div>
               </div>
 
@@ -318,45 +256,36 @@ export const ContactTab: React.FC<ContactTabProps> = ({ lang = 'ES' }) => {
           )}
         </div>
 
-        {/* Offices Cards List */}
+        {/* Official Headquarters Card */}
         <div className="lg:col-span-5 space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1">
+          <div className="pb-1">
             <h3 className="text-xl font-black text-slate-950 tracking-tight">
               {t.officesHeading}
             </h3>
-            <div className="flex flex-wrap gap-1.5 text-xs font-black">
-              {['all', 'oruro', 'lapaz', 'santacruz', 'cochabamba'].map((city) => (
-                <button
-                  key={city}
-                  onClick={() => setSelectedCity(city)}
-                  className={`px-3 py-1.5 rounded-xl transition-all duration-150 cursor-pointer ${
-                    selectedCity === city 
-                      ? 'bg-slate-950 text-white font-black shadow-sm' 
-                      : 'bg-slate-200 text-slate-900 hover:bg-slate-300 font-bold'
-                  }`}
-                >
-                  {cityLabels[city] || city.toUpperCase()}
-                </button>
-              ))}
-            </div>
           </div>
 
           <div className="space-y-4">
-            {filteredOffices.map((office) => (
+            {offices.map((office) => (
               <div 
                 key={office.id} 
-                className="bg-white rounded-2xl p-6 border-2 border-slate-300 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all duration-200 space-y-3 group"
+                className="bg-white rounded-2xl p-6 border-2 border-slate-300 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all duration-200 space-y-4 group"
               >
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between border-b-2 border-slate-100 pb-3">
                   <span className="font-black text-slate-950 text-lg group-hover:text-emerald-800 transition-colors">
                     {office.name}
                   </span>
                   <MapPin className="w-5 h-5 text-emerald-700 shrink-0" />
                 </div>
 
-                <p className="text-sm font-extrabold text-slate-900 leading-relaxed text-justify">
-                  {office.address}
-                </p>
+                <div className="space-y-2 text-sm font-extrabold text-slate-900 leading-relaxed text-justify">
+                  <p>
+                    {office.address}
+                  </p>
+                  <div className="flex items-center space-x-2 text-slate-700 font-bold text-xs pt-1">
+                    <Clock className="w-4 h-4 text-emerald-700 shrink-0" />
+                    <span>{office.hours}</span>
+                  </div>
+                </div>
 
                 {/* WhatsApp Direct Links & Numbers */}
                 <div className="pt-3 border-t-2 border-slate-100 flex flex-col gap-2.5 text-xs sm:text-sm font-extrabold text-slate-950">
@@ -384,6 +313,19 @@ export const ContactTab: React.FC<ContactTabProps> = ({ lang = 'ES' }) => {
                 </div>
               </div>
             ))}
+
+            {/* Nationwide & International Coverage Box */}
+            <div className="bg-gradient-to-br from-emerald-50/70 to-slate-50 rounded-2xl p-5 border-2 border-emerald-200/90 shadow-xs space-y-2.5">
+              <div className="flex items-center space-x-2 text-emerald-950 font-black text-sm">
+                <Globe className="w-4 h-4 text-emerald-700 shrink-0" />
+                <span>{lang === 'ES' ? 'Atención y Cobertura Nacional' : 'Nationwide & Regional Coverage'}</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-800 font-bold leading-relaxed text-justify">
+                {lang === 'ES' 
+                  ? 'Brindamos servicios de consultoría, auditorías técnicas, certificaciones y capacitaciones a empresas e industrias en todo el territorio de Bolivia y a nivel internacional (modalidad presencial in situ y remota).'
+                  : 'We deliver consultancy, technical audits, certifications, and training to organizations across Bolivia and internationally through on-site and remote hybrid services.'}
+              </p>
+            </div>
           </div>
         </div>
 
