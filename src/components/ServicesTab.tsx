@@ -45,7 +45,7 @@ export const ServicesTab: React.FC<ServicesTabProps> = ({
   searchQuery,
   setSearchQuery,
   lang = 'ES'
-}) => {
+}: ServicesTabProps) => {
   const t = UI_DICTIONARY[lang];
 
   // Filter states

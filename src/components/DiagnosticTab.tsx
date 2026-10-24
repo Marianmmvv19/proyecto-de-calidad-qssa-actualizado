@@ -20,7 +20,7 @@ export const DiagnosticTab: React.FC<DiagnosticTabProps> = ({
   onSelectService,
   onRequestQuote,
   lang = 'ES'
-}) => {
+}: DiagnosticTabProps) => {
   const t = UI_DICTIONARY[lang];
 
   // Wizard state
